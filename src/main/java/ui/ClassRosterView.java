@@ -6,6 +6,7 @@
 package ui;
 
 import dto.Student;
+import java.util.List;
 
 /**
  *
@@ -44,6 +45,58 @@ public class ClassRosterView {
     
     public void displayCreateSuccessBanner() {
         io.readString("Student successfully created.  Please hit enter to continue");
+    }
+    
+    public void displayDisplayAllBanner(){
+        io.print("=== Display All Students ===");
+    }
+    
+    public void displayDisplayStudentBanner(){
+        io.print("=== Display Student ===");
+    }
+    
+    public void displayRemoveStudentBanner(){
+        io.print("=== Remove Student ===");
+    }
+    
+    public void displayStudentList(List<Student> studentList){
+        
+        for(Student currentStudent : studentList){
+            String studentInfo = String.format("#%s : %s %s",
+                    currentStudent.getStudentId(),
+                    currentStudent.getFirstName(),
+                    currentStudent.getLastName());
+            io.print(studentInfo);
+        }
+        io.readString("Please hit enter to continue.");
+        
+    }
+    
+    public String getStudentIdChoice(){
+        return io.readString("Please enter the Student ID.");
+    }
+    
+    public void displayStudent(Student student){
+        if(student!=null){
+            io.print(student.getStudentId());
+            io.print(student.getFirstName()+" "+student.getLastName());
+            io.print(student.getCohort());
+            io.print("");
+        }
+        else{
+            io.print("No such student found.");
+        }
+        io.readString("Press enter to continue.");
+    }
+    
+    public void displayRemoveResult(Student studentRecord){
+        if(studentRecord != null){
+            io.print("Student Successfully removed.");
+        }
+        else{
+            io.print("No such student found.");
+        }
+        io.readString("Please hit enter to continue.");
     }
     
 }
