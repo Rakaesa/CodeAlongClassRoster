@@ -8,6 +8,7 @@ package controller;
 import dao.ClassRosterDaoFileImpl;
 import dao.classRosterDao;
 import dto.Student;
+import java.util.List;
 import ui.ClassRosterView;
 import ui.UserIO;
 import ui.UserIOConsoleImpl;
@@ -32,16 +33,16 @@ public class ClassRosterController {
 
             switch (menuSelection) {
                 case 1:
-                    io.print("LIST STUDENTS");
+                    listStudents();
                     break;
                 case 2:
                     createStudent();
                     break;
                 case 3:
-                    io.print("VIEW STUDENT");
+                    viewStudent();
                     break;
                 case 4:
-                    io.print("REMOVE STUDENT");
+                    removeStudent();
                     break;
                 case 5:
                     keepGoing = false;
@@ -64,4 +65,23 @@ public class ClassRosterController {
         view.displayCreateSuccessBanner();
     }
     
+    private void listStudents(){
+        view.displayDisplayAllBanner();
+        List<Student> studentList = dao.getAllStudents();
+        view.displayStudentList(studentList);
+    }
+    
+    private void viewStudent(){
+        view.displayDisplayStudentBanner();
+        String studentId = view.getStudentIdChoice();
+        Student student = dao.getStudent(studentId);
+        view.displayStudent(student);
+    }
+    
+    private void removeStudent(){
+        view.displayRemoveStudentBanner();
+        String studentId = view.getStudentIdChoice();
+        Student removedStudent = dao.removeStudent(studentId);
+        view.displayRemoveResult(removedStudent);
+    }
 }
