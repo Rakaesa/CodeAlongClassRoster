@@ -99,4 +99,19 @@ public class ClassRosterView {
         io.readString("Please hit enter to continue.");
     }
     
+    public void displayExitBanner() {
+    io.print("Good Bye!!!");
+}
+
+    public void displayUnknownCommandBanner() {
+        io.print("Unknown Command!!!");
+    }
+    public void displayErrorMessage(String errorMsg) {
+    io.print("=== ERROR ===");
+    io.print(errorMsg);
+}
+    public ClassRosterView(UserIO io){
+        this.io = io;
+    }
+    
 }

@@ -6,6 +6,10 @@
 package com.mthree.codealongclassroster;
 
 import controller.ClassRosterController;
+import dao.ClassRosterDaoFileImpl;
+import ui.ClassRosterView;
+import ui.UserIO;
+import ui.UserIOConsoleImpl;
 
 /**
  *
@@ -15,7 +19,7 @@ public class App {
     
     public static void main(String[] args){
         
-        ClassRosterController myController = new ClassRosterController();
+        ClassRosterController myController = new ClassRosterController(new ClassRosterView(new UserIOConsoleImpl()),new ClassRosterDaoFileImpl());
         
         myController.run();
         
